@@ -1,0 +1,29 @@
+{
+  "name": "network_recorder",
+  "version": "1.0.0",
+  "description": "Network Logger",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elijahmylcev/JS-Network_Logger.git"
+  },
+  "keywords": [
+    "JS",
+    "Node.js",
+    "XMLHttpRequest",
+    "npm",
+    "Network-logger"
+  ],
+  "author": "Elijah",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/elijahmylcev/JS-Network_Logger/issues"
+  },
+  "homepage": "https://github.com/elijahmylcev/JS-Network_Logger#readme",
+  "devDependencies": {
+    "jest": "^27.3.0"
+  }
+}
