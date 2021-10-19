@@ -4,6 +4,7 @@
   box-sizing: border-box;
   background-color: rgb(49, 45, 45);
   color: white;
+  font-family: Courier New, monospace;
 }
 
 .container {
@@ -14,12 +15,27 @@
 h1 {
   margin-top: 2rem;
   text-align: center;
-  font-family: Courier New, monospace;
 }
 
 #app {
   margin: 0 auto;
 }
+
+.fail {
+  margin: 1rem auto 0 auto;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  &__btn {
+  margin: 15px auto 0 auto;
+  background-color: rgb(190, 117, 7);
+  height: fit-content;
+  width: fit-content;
+  padding: 5px 10px;
+  font-weight: bold;
+  }
+}
+
 
 .wrapper {
   margin: 1rem auto;
@@ -27,15 +43,20 @@ h1 {
   flex-direction: column;
   &__img {
     text-align: center;
-    height: 300px;
-    width: 300px;
+    
+    &_photo{
+      height: 300px;
+      width: 300px;
+      object-fit: cover;
+    }
   }
 
   &__btn {
     margin: 15px auto 0 auto;
-    background-color: orange;
+    background-color: rgb(190, 117, 7);
     height: fit-content;
     width: fit-content;
     padding: 5px 10px;
+    font-weight: bold;
   }
 }
