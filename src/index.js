@@ -1,8 +1,19 @@
 import '@babel/polyfill'
 import './style.scss'
 
+let xhr = new XMLHttpRequest();
 const adress = 'https:\/\/randomfox.ca\/images\/92.jpg'
 let newDiv = document.createElement('div')
+function GetIndex() {
+  return Math.floor(Math.random()*100)
+}
+
+function getAdress() {
+  const randomIndex = GetIndex()
+  xhr.open('GET', `https:\/\/randomfox.ca\/images\/${randomIndex}.jpg`)
+  xhr.send()
+}
+
 
 function getElement(adress) {
 
