@@ -1,17 +1,22 @@
 import '@babel/polyfill'
 
-const root = document.getElementById('#app')
-const newDiv = document.createElement('div')
-let start = newDiv = null
 const adress = 'https:\/\/randomfox.ca\/images\/92.jpg'
-newDiv.innerHTML = `
-    <div class="wrapper">
-        <div class="wrapper__img">
-            <img class="wrapper__img_photo" src=${adress} alt="Photo">
-        </div>
-        <button class="wrapper__btn">Get Photo</button>
-    </div>
-`
-root.insertBefore(newDiv, start)
 
+function getElement(adress) {
+  let newDiv = document.createElement('div')
+
+  newDiv.innerHTML = `
+<div class="wrapper">
+    <div class="wrapper__img">
+        <img class="wrapper__img_photo" src=${adress} alt="Photo">
+    </div>
+    <button class="wrapper__btn">Get Photo</button>
+</div>
+`
+const start = document.querySelector('.start')
+const parentDiv = start.parentNode
+  parentDiv.insertBefore(newDiv, start)
+}
+
+getElement(adress)
 import './style.scss'
