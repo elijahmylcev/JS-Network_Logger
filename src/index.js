@@ -1,21 +1,26 @@
 import '@babel/polyfill'
 import './style.scss'
 
-let xhr = new XMLHttpRequest();
-const adress = 'https:\/\/randomfox.ca\/images\/92.jpg'
+const adress = ''
 let newDiv = document.createElement('div')
-function GetIndex() {
-  return Math.floor(Math.random()*100)
-}
 
 function getAdress() {
-  const randomIndex = GetIndex()
-  xhr.open('GET', `https:\/\/randomfox.ca\/images\/${randomIndex}.jpg`)
+  let xhr = new XMLHttpRequest();
+
+  xhr.open('GET', 'https://randomfox.ca/floof/')
   xhr.send()
+
+  xhr.onload = function () {
+    adress = JSON.parse(xhr.response).image
+    console.log(adress);
+    return adress
+  }
 }
 
 
-function getElement(adress) {
+async function getElement() {
+
+  await getAdress()
 
   if (!adress || adress == '') {
     newDiv.innerHTML = `
@@ -39,4 +44,4 @@ function getElement(adress) {
   parentDiv.insertBefore(newDiv, start)
 }
 
-getElement(adress)
+getElement()
