@@ -1,8 +1,12 @@
 import '@babel/polyfill'
 import './style.scss'
 
-const adress = ''
-let newDiv = document.createElement('div')
+let newDiv = document.createElement('div');
+const btnGetPhotoFox = document.querySelector('.btn')
+
+btnGetPhotoFox.addEventListener('click', (event) => {
+  getElement(IntegrateElement);
+})
 
 function getElement(callback) {
   let xhr = new XMLHttpRequest();
@@ -16,13 +20,11 @@ function getElement(callback) {
   xhr.send()
 }
 
-
 function IntegrateElement(adress) {
 
   if (!adress || adress == '') {
     newDiv.innerHTML = `
       <div class = "fail">OOOps!
-        <button class="fail__btn">Get Photo Fox</button>
       </div>
     `
   } else {
@@ -31,7 +33,6 @@ function IntegrateElement(adress) {
         <div class="wrapper__img">
             <img class="wrapper__img_photo" src=${adress} alt="Photo">
         </div>
-        <button class="wrapper__btn">Get Photo Fox</button>
     </div>
     `
   }
