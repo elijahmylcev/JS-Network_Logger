@@ -14,7 +14,20 @@ function getElement(callback) {
   xhr.open('GET', 'https://randomfox.ca/floof/')
 
   xhr.onload = function () {
-    callback(JSON.parse(xhr.response).image)
+    if (xhr.status != 200) {
+      console.log(`Ошибка ${xhr.status}: ${xhr.statusText}`);
+    } else {
+
+      callback(JSON.parse(xhr.response).image)
+
+      console.log(`Получили ${xhr.response.length} байт`);
+    }
+  }
+
+  xhr.onprogress = function(event) {
+    if (event.lengthComputable) {
+      console.log(`Поулчено ${event.loaded} из ${event.total}`);
+    }
   }
 
   xhr.send()
