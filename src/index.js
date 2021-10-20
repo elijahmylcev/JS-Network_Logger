@@ -4,23 +4,20 @@ import './style.scss'
 const adress = ''
 let newDiv = document.createElement('div')
 
-function getAdress() {
+function getElement(callback) {
   let xhr = new XMLHttpRequest();
 
   xhr.open('GET', 'https://randomfox.ca/floof/')
-  xhr.send()
 
   xhr.onload = function () {
-    adress = JSON.parse(xhr.response).image
-    console.log(adress);
-    return adress
+    callback(JSON.parse(xhr.response).image)
   }
+
+  xhr.send()
 }
 
 
-async function getElement() {
-
-  await getAdress()
+function IntegrateElement(adress) {
 
   if (!adress || adress == '') {
     newDiv.innerHTML = `
@@ -44,4 +41,4 @@ async function getElement() {
   parentDiv.insertBefore(newDiv, start)
 }
 
-getElement()
+getElement(IntegrateElement)
