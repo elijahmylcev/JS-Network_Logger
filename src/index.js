@@ -3,10 +3,16 @@ import './style.scss'
 const stackLogger = require('./stackLogger');
 
 let newDiv = document.createElement('div');
+let listElement = document.createElement('div')
 const btnGetPhotoFox = document.querySelector('.btn')
+const getListBtn = document.querySelector('.btn-get-list')
 
 btnGetPhotoFox.addEventListener('click', (event) => {
   getElement(IntegrateElement);
+})
+
+getListBtn.addEventListener('click', () => {
+  console.log(stackLogger);
 })
 
 function getElement(callback) {

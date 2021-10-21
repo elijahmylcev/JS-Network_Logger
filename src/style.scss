@@ -10,6 +10,13 @@
   font-family: Courier New, monospace;
 }
 
+button {
+  height: fit-content;
+  width: fit-content;
+  padding: 5px 10px;
+  font-weight: bold;
+}
+
 .container {
   max-width: 1000px;
   margin: 0 auto;
@@ -34,10 +41,6 @@ h1 {
 .btn {
   margin: 15px auto 0 auto;
   background-color: rgb(190, 117, 7);
-  height: fit-content;
-  width: fit-content;
-  padding: 5px 10px;
-  font-weight: bold;
 }
 
 .wrapper {
