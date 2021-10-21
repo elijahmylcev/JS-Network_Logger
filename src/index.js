@@ -1,5 +1,6 @@
 import '@babel/polyfill'
 import './style.scss'
+const stackLogger = require('./stackLogger');
 
 let newDiv = document.createElement('div');
 const btnGetPhotoFox = document.querySelector('.btn')
@@ -20,7 +21,7 @@ function getElement(callback) {
 
       callback(JSON.parse(xhr.response).image)
 
-      console.log(`Получили ${xhr.response.length} байт`);
+      // console.log(`Получили ${xhr.response.length} байт`);
     }
   }
 
