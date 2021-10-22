@@ -3,11 +3,12 @@ import './style.scss'
 const stackLogger = require('./stackLogger');
 
 let newDiv = document.createElement('div');
-let listElement = document.createElement('div')
 const btnGetPhotoFox = document.querySelector('.btn')
 const getListBtn = document.querySelector('.btn-get-list')
 
-btnGetPhotoFox.addEventListener('click', (event) => {
+document.addEventListener('DOMContentLoaded', getElement(IntegrateElement))
+
+btnGetPhotoFox.addEventListener('click', () => {
   getElement(IntegrateElement);
 })
 
@@ -62,4 +63,4 @@ function IntegrateElement(adress) {
   parentDiv.insertBefore(newDiv, start)
 }
 
-getElement(IntegrateElement)
+module.exports 
