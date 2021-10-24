@@ -41,9 +41,9 @@ function getElement(callback) {
   xhr.send()
 }
 
-function IntegrateElement(adress) {
+function IntegrateElement(address) {
 
-  if (!adress || adress == '') {
+  if (!address || address == '') {
     newDiv.innerHTML = `
       <div class = "fail">OOOps!
       </div>
@@ -52,7 +52,7 @@ function IntegrateElement(adress) {
     newDiv.innerHTML = `
     <div class="wrapper">
         <div class="wrapper__img">
-            <img class="wrapper__img_photo" src=${adress} alt="Photo">
+            <img class="wrapper__img_photo" src=${address} alt="Photo">
         </div>
     </div>
     `
