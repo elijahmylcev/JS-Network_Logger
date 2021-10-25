@@ -1,6 +1,6 @@
 import '@babel/polyfill'
 import './style.scss'
-const stackLogger = require('./stackLogger');
+import stackLogger from './stackLogger';
 
 let newDiv = document.createElement('div');
 const btnGetPhotoFox = document.querySelector('.btn')
@@ -63,4 +63,4 @@ function IntegrateElement(address) {
   parentDiv.insertBefore(newDiv, start)
 }
 
-module.exports 
+export { getElement };

@@ -1,4 +1,4 @@
-const stackLogger = require('./stackLogger');
+import stackLogger from './stackLogger'; 
 
 describe('stackLogger', () => {
   test('should return array', () => {

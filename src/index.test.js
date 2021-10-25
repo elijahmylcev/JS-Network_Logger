@@ -1,9 +1,8 @@
-const index = require('./index');
-// import index from './index.js'
+import { getElement } from './index.js'
 
 describe('integrateElement()', () => {
   test('should ', () => {
-
+    console.log(getElement);
   })
 });
 

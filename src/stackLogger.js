@@ -10,4 +10,4 @@ window.XMLHttpRequest.prototype.open = function (method, url, async, user, passw
     return oldXHROpen.apply(this, arguments)
 }
 
-module.exports = stackForLinked
+export default stackForLinked;
