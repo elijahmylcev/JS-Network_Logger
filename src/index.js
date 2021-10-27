@@ -2,7 +2,6 @@ import '@babel/polyfill'
 import './style.scss'
 import stackLogger from './stackLogger';
 
-let newDiv = document.createElement('div');
 const btnGetPhotoFox = document.querySelector('.btn')
 const getListBtn = document.querySelector('.btn-get-list')
 
@@ -23,16 +22,14 @@ function getElement(callback) {
 
   xhr.onload = function () {
     if (xhr.status != 200) {
-      console.log(`Ошибка ${xhr.status}: ${xhr.statusText}`);
+      console.error(`Error ${xhr.status}: ${xhr.statusText}`);
     } else {
 
       callback(JSON.parse(xhr.response).image)
-
-      // console.log(`Получили ${xhr.response.length} байт`);
     }
   }
 
-  xhr.onprogress = function(event) {
+  xhr.onprogress = function (event) {
     if (event.lengthComputable) {
       console.log(`Поулчено ${event.loaded} из ${event.total}`);
     }
@@ -42,6 +39,8 @@ function getElement(callback) {
 }
 
 function IntegrateElement(address) {
+  let newDiv = document.createElement('div');
+
 
   if (!address || address == '') {
     newDiv.innerHTML = `
@@ -63,4 +62,8 @@ function IntegrateElement(address) {
   parentDiv.insertBefore(newDiv, start)
 }
 
-export { getElement };
+// export {
+//   getElement
+// };
+
+module.exports
