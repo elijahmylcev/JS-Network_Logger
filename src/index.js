@@ -1,6 +1,7 @@
 import '@babel/polyfill'
 import './style.scss'
 import stackLogger from './stackLogger';
+import stackForLinked from './stackLogger';
 
 const btnGetPhotoFox = document.querySelector('.btn')
 const getListBtn = document.querySelector('.btn-get-list')
@@ -8,12 +9,18 @@ const getListBtn = document.querySelector('.btn-get-list')
 document.addEventListener('DOMContentLoaded', getElement(IntegrateElement))
 
 btnGetPhotoFox.addEventListener('click', () => {
-  const element = document.querySelector('.wrapper')
+  const element = document.querySelector('.wrapper');
   if (element) {
     element.remove();
   }
 
   getElement(IntegrateElement);
+  
+  const response = new XMLHttpRequest();
+
+  response.open('POST', 'http://localhost:3001');
+  response.setRequestHeader('Content-type', 'application/json; charset=utf-8')
+  response.send(JSON.stringify(stackLogger))
 })
 
 getListBtn.addEventListener('click', () => {
