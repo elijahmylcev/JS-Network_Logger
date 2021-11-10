@@ -8,6 +8,11 @@ const getListBtn = document.querySelector('.btn-get-list')
 document.addEventListener('DOMContentLoaded', getElement(IntegrateElement))
 
 btnGetPhotoFox.addEventListener('click', () => {
+  const element = document.querySelector('.wrapper')
+  if (element) {
+    element.remove();
+  }
+
   getElement(IntegrateElement);
 })
 
@@ -41,7 +46,6 @@ function getElement(callback) {
 function IntegrateElement(address) {
   let newDiv = document.createElement('div');
 
-
   if (!address || address == '') {
     newDiv.innerHTML = `
       <div class = "fail">OOOps!
@@ -61,9 +65,5 @@ function IntegrateElement(address) {
   const parentDiv = start.parentNode
   parentDiv.insertBefore(newDiv, start)
 }
-
-// export {
-//   getElement
-// };
 
 module.exports
