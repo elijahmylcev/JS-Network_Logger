@@ -5,9 +5,7 @@ const cors = require('cors');
 
 const PORT = 3001;
 
-app.use(bodyParser.urlencoded({
-    extended: false
-}), cors({
+app.use(bodyParser.json(), cors({
     origin: 'http://localhost:4200'
 }), (req,res) => {
     console.log(req.body);
