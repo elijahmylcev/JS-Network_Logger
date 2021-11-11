@@ -25,7 +25,7 @@ function sorter(arr) {
       if (err) {
         throw err
       }
-      console.log('saved');
+      console.log('saved!');
     })
   }
 }
