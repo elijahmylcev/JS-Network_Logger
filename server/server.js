@@ -21,7 +21,7 @@ app.listen(PORT, () => {
 
 function sorter(arr) {
   if (arr.length >= 3) {
-    fs.appendFile('statistic.txt', `${arr}`, function (err) {
+    fs.appendFile('statistic.js', `${arr}`, function (err) {
       if (err) {
         throw err
       }
