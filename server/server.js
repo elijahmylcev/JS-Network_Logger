@@ -25,6 +25,7 @@ function sorter(arr) {
 
   fs.appendFile(`statistic-${new Date().getDate()}.txt`, `${JSON.stringify(arr[arr.length - 1])}\n`, function (err) {
     if (err) {
+      console.log(`${err}`);
       throw err
     }
     console.log('saved!!!');
