@@ -9,7 +9,7 @@ window.XMLHttpRequest.prototype.open = function (method, url, async, user, passw
       headers: {
         'Content-Type': 'application/json;charset=utf-8'
       },
-      body: this.response
+      body: JSON.stringify({...{image: JSON.parse(this.response).image, link: JSON.parse(this.response).link}, time: Date.now()})
     })
   })
 

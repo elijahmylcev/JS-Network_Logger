@@ -20,14 +20,13 @@ app.listen(PORT, () => {
 })
 
 function sorter(arr) {
-  if (arr.length >= 3) {
-    fs.appendFile('statistic.js', `${arr.forEach(element => {
-  element
-})}`, function (err) {
-      if (err) {
-        throw err
-      }
-      console.log('saved!!!');
-    })
-  }
+
+  // Считать, что 
+
+  fs.appendFile(`statistic-${new Date().getDate()}.txt`, `${JSON.stringify(arr[arr.length - 1])}\n`, function (err) {
+    if (err) {
+      throw err
+    }
+    console.log('saved!!!');
+  })
 }
