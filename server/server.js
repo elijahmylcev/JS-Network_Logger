@@ -11,7 +11,7 @@ app.use(bodyParser.json(), cors({
   origin: 'http://localhost:4200'
 }), (req, res) => {
   stackLogger.push(req.body)
-  console.log(stackLogger);
+  console.log(stackLogger[stackLogger.length - 1]);
   sorter(stackLogger);
 });
 

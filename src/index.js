@@ -1,6 +1,6 @@
 import '@babel/polyfill'
 import './style.scss'
-import stackLogger from './stackLogger';
+import * as stackLogger from './stackLogger';
 
 const btnGetPhotoFox = document.querySelector('.btn')
 
@@ -19,26 +19,40 @@ function getElement(callback) {
 
   xhr.open('GET', 'https://randomfox.ca/floof/');
 
+  xhr.send();
+
   xhr.onload = function () {
     if (xhr.status != 200) {
-      console.error(`Error ${xhr.status}: ${xhr.statusText}`);
+      console.log(`Error ${xhr.status}: ${xhr.statusText}`);      
     } else {
-
+      console.log(stackLogger.stackItem);
       callback(JSON.parse(xhr.response).image)
-      
+
+      // Отправка на сервер для записи в стек
+      fetch('http://localhost:3001', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      },
+      body: stackLogger.stackItem
+    })
     }
   };
 
-  xhr.send();
+  xhr.onerror = function() {
+    console.log('Ошибка');
+  }
 }
 
 function IntegrateElement(address) {
   let newDiv = document.createElement('div');
 
-  if (!address || address == '') {
+  if (!address || address == '' || address == undefined) {
     newDiv.innerHTML = `
+    <div class="wrapper">
       <div class = "fail">OOOps!
       </div>
+    </div>
     `
   } else {
     newDiv.innerHTML = `
