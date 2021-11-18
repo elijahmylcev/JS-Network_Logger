@@ -3,7 +3,6 @@ import './style.scss'
 import stackLogger from './stackLogger';
 
 const btnGetPhotoFox = document.querySelector('.btn')
-const getListBtn = document.querySelector('.btn-get-list')
 
 document.addEventListener('DOMContentLoaded', getElement(IntegrateElement))
 
@@ -12,18 +11,13 @@ btnGetPhotoFox.addEventListener('click', () => {
   if (element) {
     element.remove();
   }
-
   getElement(IntegrateElement);
-})
-
-getListBtn.addEventListener('click', () => {
-  console.log(stackLogger);
 })
 
 function getElement(callback) {
   let xhr = new XMLHttpRequest();
 
-  xhr.open('GET', 'https://randomfox.ca/floof/')
+  xhr.open('GET', 'https://randomfox.ca/floof/');
 
   xhr.onload = function () {
     if (xhr.status != 200) {
@@ -31,16 +25,11 @@ function getElement(callback) {
     } else {
 
       callback(JSON.parse(xhr.response).image)
+      
     }
-  }
+  };
 
-  xhr.onprogress = function (event) {
-    if (event.lengthComputable) {
-      console.log(`Поулчено ${event.loaded} из ${event.total}`);
-    }
-  }
-
-  xhr.send()
+  xhr.send();
 }
 
 function IntegrateElement(address) {

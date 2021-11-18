@@ -1,7 +1,9 @@
-import { getElement } from './index.js'
+import {index} from './index.js'
 
 describe('getElement(callback)', () => {
-  test.todo('open and send methods must be called')
+  test('open and send methods must be called', () => {
+    
+  })
   test.todo('callback must be called')
 });
 
