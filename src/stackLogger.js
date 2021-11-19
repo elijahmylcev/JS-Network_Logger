@@ -6,9 +6,9 @@ export default window.XMLHttpRequest.prototype.open = function (
   url,
   async,
   user,
-  password
+  password,
 ) {
-  this.addEventListener("load", function () {
+  this.addEventListener('load', function () {
     stack.push({
       ...JSON.parse(this.response),
       time: Date.now(),

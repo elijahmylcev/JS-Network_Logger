@@ -27,7 +27,7 @@ export function getElement(callback) {
     }
   };
   xhr.onerror = (err) => {
-    console.log(err);
+    console.log(err.type);
   };
 }
 
