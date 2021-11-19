@@ -1,20 +1,19 @@
-import "@babel/polyfill";
-import "./style.scss";
-import * as stackLogger from "./stackLogger";
+import '@babel/polyfill';
+import './style.scss';
+import { store } from './stackLogger';
+
+document.addEventListener("DOMContentLoaded", getElement(integrateElement));
 
 const btnGetPhotoFox = document.querySelector(".btn");
-
-document.addEventListener("DOMContentLoaded", getElement(IntegrateElement));
-
 btnGetPhotoFox.addEventListener("click", () => {
   const element = document.querySelector(".wrapper");
   if (element) {
     element.remove();
   }
-  getElement(IntegrateElement);
+  getElement(integrateElement);
 });
 
-function getElement(callback) {
+export function getElement(callback) {
   let xhr = new XMLHttpRequest();
 
   xhr.open("GET", "https://randomfox.ca/floof/");
@@ -25,17 +24,15 @@ function getElement(callback) {
     if (xhr.status != 200) {
       console.log(`Error ${xhr.status}: ${xhr.statusText}`);
     } else {
-      console.log(stackLogger.stackItem);
       callback(JSON.parse(xhr.response).image);
-
       // Отправка на сервер для записи в стек
-      fetch("http://localhost:3001", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json;charset=utf-8",
-        },
-        body: stackLogger.stackItem,
-      });
+      // fetch("http://localhost:3001", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json;charset=utf-8",
+      //   },
+      //   body: store[store.length - 1],
+      // });
     }
   };
 
@@ -44,7 +41,7 @@ function getElement(callback) {
   };
 }
 
-function IntegrateElement(address) {
+export function integrateElement(address) {
   let newDiv = document.createElement("div");
 
   if (!address || address == "" || address == undefined) {
@@ -69,5 +66,3 @@ function IntegrateElement(address) {
   const parentDiv = start.parentNode;
   parentDiv.insertBefore(newDiv, start);
 }
-
-module.exports;

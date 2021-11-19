@@ -2,25 +2,61 @@
 // import fetch from 'node-fetch';
 // const {Response} = jest.requireActual('node-fetch');
 
-import {
-  stackLogger
-} from './stackLogger';
+import { store, errors } from './stackLogger';
+
+let mock = null;
+
+// function mockFetch(status, data) {
+//   const xhrMockObj = {
+//     open: jest.fn(),
+//     send: jest.fn(),
+//     setRequestHeader: jest.fn(),
+//     readyState: 4,
+//     status,
+//     response: JSON.stringify(data),
+//   };
+//   const xhrMockClass = function () {
+//     return xhrMockObj;
+//   };
+//   window.XMLHttpRequest = jest.fn().mockImplementation(xhrMockClass);
+//   setTimeout(() => {
+//     xhrMockObj['onreadystatechange']();
+//     xhrMockObj['onload']();
+//   }, 1000);
+// }
+
+window.XMLHttpRequest.prototype.send = jest.fn().mockImplementation(() => {
+});
+
+const getImage = () => {
+  let xhr = new XMLHttpRequest();
+  xhr.open("GET", "https://randomfox.ca/floof/");
+  xhr.send();
+  xhr.onload = function () {
+    // mock = JSON.parse(xhr.response).image;
+    mock = xhr.response;
+  };
+  xhr.onerror = function () {
+    console.log("Ошибка");
+  };
+  return xhr;
+}
 
 describe('The modified function should send a request', () => {
-  test('should return array', () => {
-    // const xml = new XMLHttpRequest();
-    // xml.open('GET', 'https://randomfox.ca/floof3/');
+  
+  test('store', () => {
+    const xhr = getImage();
 
-    // xml.onload = function() {
-    //   if (xml.status === 200) {
-    //     console.log(JSON.parse(xml.response));
-    //   } else {
-    //     console.log(`Error ${xml.status}: ${xml.statusText}`)
-    //   }
-    // }
+    // Create the event
+    const event = new CustomEvent(
+      "load",
+      { "response": { "image": "1" } },
+    );
 
-    // xml.send();
+    // Dispatch/Trigger/Fire the event
+    xhr.dispatchEvent(event);
 
-    // expect(Array.isArray(stackLogger)).toBeTruthy();
+    console.dir({ errors, store, mock });
   });
+
 });

@@ -1,14 +1,23 @@
-let oldXHROpen = window.XMLHttpRequest.prototype.open;
-let stackItem;
+const oldXHROpen = window.XMLHttpRequest.prototype.open;
 
-export default window.XMLHttpRequest.prototype.open = function (method, url, async, user, password) {
-  this.addEventListener('load', function () {
-    stackItem = JSON.stringify({...JSON.parse(this.response), "time": Date.now()});
-    return stackItem
+const store = [];
+const errors = [];
+
+window.XMLHttpRequest.prototype.open = function (method, url, async, user, password) {
+  // this.addEventListener('load', function () {
+  //   store.push(JSON.stringify({ ...JSON.parse(this.response), time: Date.now() }));
+  // });
+  this.onload = () => {
+    console.dir({ logger: true });
+    store.push(JSON.stringify({ ...JSON.parse(this.response), time: Date.now() }));
+  };
+  this.onerror = (error) => {
+    errors.push({ error });
+  };
+  this.addEventListener('error', (error) => {
+    console.dir({ error });
   })
-  return oldXHROpen.apply(this, arguments)
+  return oldXHROpen.apply(this, arguments);
 };
 
-console.log(stackItem);
-
-export {stackItem}
+export { store, errors };
