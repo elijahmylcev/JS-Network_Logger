@@ -1,7 +1,5 @@
-'use strict';
-
-import { getElement, integrateElement } from './index.js';
 import mock from 'xhr-mock';
+import { getElement } from '../getElement.js';
 
 describe('getElement(callback): XHR must be called', () => {
   // replace the real XHR object with the mock XHR object before each test
@@ -19,16 +17,4 @@ describe('getElement(callback): XHR must be called', () => {
       expect(data).toBe(image);
     });
   });
-});
-
-describe('integrateElement(address)', () => {
-  test('CreateElement div', () => {
-    // document.body.innerHTML = '<div>' + '<span>' + '</span>' + '</div>';
-    // console.log(document.body.innerHTML);
-    // console.log(document.createElement('div'));
-    const insertBefore = jest.fn();
-    const address = 'link';
-    expect(integrateElement(address)).toBeCalled();
-  });
-  test.todo('innerHTML method must be called');
 });

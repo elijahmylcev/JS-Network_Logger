@@ -1,58 +1,11 @@
 import '@babel/polyfill';
 import './style.scss';
 import { stack } from './stackLogger';
+// import { integrateElement } from './integrateElement';
+// import { getElement } from './getElement';
+import { addElement } from './addElement';
 
-document.addEventListener('DOMContentLoaded', getElement(integrateElement));
+document.addEventListener('DOMContentLoaded', () => addElement('.wrapper'));
 
-// Called getItem function
 const btnGetPhotoFox = document.querySelector('.btn');
-btnGetPhotoFox.addEventListener('click', () => {
-  const element = document.querySelector('.wrapper');
-  if (element) {
-    element.remove();
-  }
-  getElement(integrateElement);
-});
-
-export function getElement(callback) {
-  const xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://randomfox.ca/floof/');
-  xhr.send();
-
-  xhr.onload = () => {
-    if (xhr.status != 200) {
-      console.log('error');
-    } else {
-      callback(JSON.parse(xhr.response).image);
-    }
-  };
-  xhr.onerror = (err) => {
-    console.log(err.type);
-  };
-}
-
-export function integrateElement(address) {
-  const newDiv = document.createElement('div');
-
-  if (!address || address == '' || address == undefined) {
-    newDiv.innerHTML = `
-    <div class="wrapper">
-      <div class = "fail">
-        OOOps!
-      </div>
-    </div>
-    `;
-  } else {
-    newDiv.innerHTML = `
-      <div class="wrapper">
-        <div class="wrapper__img">
-          <img class="wrapper__img_photo" src=${address} alt="Photo">
-        </div>    
-      </div>
-    `;
-  }
-
-  const start = document.querySelector('.start');
-  const parentDiv = start.parentNode;
-  parentDiv.insertBefore(newDiv, start);
-}
+btnGetPhotoFox.addEventListener('click', () => addElement('.wrapper'));
