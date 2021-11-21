@@ -32,7 +32,7 @@ export function getElement(callback) {
 }
 
 export function integrateElement(address) {
-  let newDiv = document.createElement('div');
+  const newDiv = document.createElement('div');
 
   if (!address || address == '' || address == undefined) {
     newDiv.innerHTML = `
