@@ -1,16 +1,23 @@
 import { addElement } from '../addElement.js';
-const $ = require('jquery');
+import $ from 'jquery';
+
 describe('Should be called getElement after click btn', () => {
-  test('click element = false', () => {
+  let btn;
+  beforeEach(() => {
     document.body.innerHTML = `
       <button class="btn">GetElementFox</button> <div class="wrapper"><div></div></div>
     `;
-
-    const btn = document.querySelector('.btn');
+    btn = document.querySelector('.btn');
+  });
+  test('click element = false', () => {
     const result = $(btn).click(addElement('.wrapper'));
-
     expect(result.length).toBe(1); // <=> toHaveBeenCalled
   });
 
-  test('should condition element = true', () => {});
+  test('checking conditions', () => {
+    const removeMock = jest.fn();
+    document.querySelector = jest.fn().mockImplementation(() => ({ remove: removeMock }));
+    addElement('.wrapper');
+    expect(removeMock).toBeCalled();
+  });
 });
