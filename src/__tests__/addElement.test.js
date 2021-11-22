@@ -1,13 +1,16 @@
 import { addElement } from '../addElement.js';
+const $ = require('jquery');
 describe('Should be called getElement after click btn', () => {
-  test('click', () => {
+  test('click element = false', () => {
     document.body.innerHTML = `
-      <button class="btn">GetElementFox</button> <div class="wrapper"></div>
+      <button class="btn">GetElementFox</button> <div class="wrapper"><div></div></div>
     `;
-    const getElement = jest.fn();
-    const integrateElement = jest.fn();
+
     const btn = document.querySelector('.btn');
-    btn.addEventListener('click', addElement('.wrapper'));
-    // expect().toHaveBeenCalled();
+    const result = $(btn).click(addElement('.wrapper'));
+
+    expect(result.length).toBe(1); // <=> toHaveBeenCalled
   });
+
+  test('should condition element = true', () => {});
 });
